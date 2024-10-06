@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Filter</title>
+    <style>
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 30rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            margin-bottom: 1.5rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.5rem;
+            font-size: 1.25rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        li:not(.hidden) {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Filter Sports</h2>
+        <input type="text" class="form-control" id="filter-word" placeholder="Type to filter...">
+        <ul id="list" class="list-group">
+            <li class="list-group-item list-text">Football</li>
+            <li class="list-group-item list-text">Basketball</li>
+            <li class="list-group-item list-text">Tennis</li>
+            <li class="list-group-item list-text">Badminton</li>
+            <li class="list-group-item list-text">Chess</li>
+            <li></li>
+        </ul>
+    </div>
+    
+    <script>
+        const filter_text = document.getElementById("filter-word");
+        const list_texts = document.querySelectorAll(".list-text");
+
+        filter_text.addEventListener('input', () => {
+            const filter_value = filter_text.value.toLowerCase();
+            list_texts.forEach((item) => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(filter_value)) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
